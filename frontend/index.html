@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Texto Educacional</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Experimento</h1>
+    <button id="logout-btn">Sair</button>
+  </header>
+
+  <main class="text-screen">
+    <h2 id="text-title">Estude atentamente o texto abaixo:</h2>
+    <div class="text-box">
+      <p><strong>Der Alltag von Maria</strong></p>
+      <p>Maria ist Studentin in Berlin. Sie steht jeden Tag um 7 Uhr auf. Dann frühstückt sie und geht zur Universität. Am Nachmittag lernt sie in der Bibliothek. Abends kocht sie mit Freunden oder sieht fern. Am Wochenende besucht sie oft ihre Familie.</p>
+    </div>
+    <button id="continue-btn">Continuar</button>
+  </main>
+
+  <footer>
+    <p>Em caso de dúvidas ou problemas, entre em contato com: <strong>(82) 99985-5194</strong> ou <strong>mhvo@ic.ufal.br</strong> - Márcio Henrique, aluno de Ciência da Computação - UFAL</p>
+  </footer>
+
+  <script type="module">
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+      window.location.href = "basic_login";
+    }
+
+    document.getElementById("continue-btn").addEventListener("click", () => {
+      window.location.href = "flashcards"; // ou "quiz.html" se for grupo B
+    });
+
+    document.getElementById("logout-btn")?.addEventListener("click", () => {
+      localStorage.removeItem("user_id");
+      window.location.href = "basic_login";
+    });
+  </script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

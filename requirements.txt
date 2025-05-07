@@ -1,0 +1,11 @@
+python-multipart
+fastapi
+uvicorn
+spacy
+langdetect
+openai
+python-dotenv
+sqlalchemy
+alembic
+psycopg2-binary
+pydantic
