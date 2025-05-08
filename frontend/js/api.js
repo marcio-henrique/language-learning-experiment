@@ -1,4 +1,4 @@
-const API_BASE = "http://64.23.138.141:8000";  // ou o endereço real do seu backend
+const API_BASE = "https://language-learning-experiment.duckdns.org";  // ou o endereço real do seu backend
 
 export async function getEducationalText() {
   const response = await fetch(`${API_BASE}/texts/`);

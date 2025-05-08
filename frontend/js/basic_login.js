@@ -1,4 +1,4 @@
-const API_BASE = "http://64.23.138.141:8000";
+const API_BASE = "https://language-learning-experiment.duckdns.org";
 
 document.addEventListener("DOMContentLoaded", () => {
     const userId = localStorage.getItem("user_id");
