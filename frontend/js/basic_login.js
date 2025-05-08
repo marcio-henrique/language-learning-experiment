@@ -1,9 +1,9 @@
-const API_BASE = "http://localhost:8000";
+const API_BASE = "http://64.23.138.141:8000";
 
 document.addEventListener("DOMContentLoaded", () => {
     const userId = localStorage.getItem("user_id");
     if (userId) {
-        window.location.href = "index";
+        window.location.href = "index.html";
     }
 });
 
@@ -30,7 +30,7 @@ document.getElementById("user-form").addEventListener("submit", async (e) => {
     const user = await response.json();
     localStorage.setItem("user_id", user.id);
     localStorage.setItem("user_group", user.group);
-    window.location.href = "index"; // leitura do texto
+    window.location.href = "index.html"; // leitura do texto
 
   } catch (err) {
     alert("Erro: " + err.message);

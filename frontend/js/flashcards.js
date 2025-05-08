@@ -3,7 +3,7 @@ const container = document.getElementById("flashcards-container");
 const colors = ["yellow", "blue", "green", "purple"];
 
 async function loadFlashcards() {
-  const res = await fetch(`http://localhost:8000/flashcards/custom/?auto_flashcards=3&manual_flashcards=1`);
+  const res = await fetch(`http://64.23.138.141:8000/flashcards/custom/?auto_flashcards=3&manual_flashcards=1`);
   const data = await res.json();
 
   data.flashcards.forEach((card, i) => {
@@ -43,7 +43,7 @@ function setupFlipEvents() {
 }
 
 document.getElementById("continue-to-quiz").addEventListener("click", () => {
-  window.location.href = "quiz";
+  window.location.href = "quiz.html";
 });
 
 loadFlashcards();

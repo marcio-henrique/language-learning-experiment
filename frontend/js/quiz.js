@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:8000";
+const API_BASE = "http://64.23.138.141:8000";
 const userId = localStorage.getItem("user_id");
 
 if (!userId) {
@@ -96,7 +96,7 @@ document.getElementById("submit-quiz").addEventListener("click", async (e) => {
   });
 
   setTimeout(() => {
-    window.location.href = "thanks";
+    window.location.href = "thanks.html";
   }, 3000); // mostra as respostas por 3 segundos
 });
 

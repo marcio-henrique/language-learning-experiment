@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!userId) {
     // alert("Usuário não identificado.");
     localStorage.removeItem("user_id");
-    window.location.href = "basic_login";
+    window.location.href = "basic_login.html";
     return;
   }
 
@@ -39,6 +39,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   
 document.getElementById("logout-btn")?.addEventListener("click", () => {
   localStorage.removeItem("user_id");
-  window.location.href = "basic_login";
+  window.location.href = "basic_login.html";
 });
   
