@@ -37,11 +37,10 @@
   async function showGroupMessage() {
     if (!userId) return;
 
-    const res = await fetch(`${API_BASE}/users/${userId}`);
-    const user = await res.json();
+    const group = localStorage.getItem("user_group");
 
     const box = document.getElementById("group-instruction");
-    if (user.group === "A") {
+    if (group === "A") {
       box.innerHTML = `"O sol era um globo de ouro ardente"`; // Grupo A
     } else {
       box.innerHTML = `"A lua brilhava como um espelho de prata"`; // Grupo B

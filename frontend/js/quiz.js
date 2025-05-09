@@ -119,5 +119,6 @@ document.getElementById("submit-quiz").addEventListener("click", async (e) => {
 
 document.getElementById("logout-btn")?.addEventListener("click", () => {
   localStorage.removeItem("user_id");
+  localStorage.removeItem("user_group");
   window.location.href = "basic_login";
 });
