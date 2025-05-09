@@ -66,7 +66,7 @@ async function loadFlashcards() {
         feedback.textContent = resposta === correta ? "✔️ Resposta correta!" : `❌ Resposta incorreta. Correta: ${correta}`;
 
         // salvar no backend
-        await fetch(`http://localhost:8000/flashcards/answer/`, {
+        await fetch(`${API_BASE}/flashcards/answer/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

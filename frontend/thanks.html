@@ -31,7 +31,8 @@
 </body>
 <script type="module">
   const userId = localStorage.getItem("user_id");
-  const API_BASE = "http://localhost:8000";
+  
+  import { API_BASE } from "./config.js";
 
   async function showGroupMessage() {
     if (!userId) return;
