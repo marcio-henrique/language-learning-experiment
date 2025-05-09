@@ -13,3 +13,8 @@
 `
     uvicorn app.main:app --reload
 `
+
+## Rodar front local
+`
+   http-server -p 5500
+`

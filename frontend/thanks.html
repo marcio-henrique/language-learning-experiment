@@ -12,9 +12,16 @@
   </header>
 
   <main class="thank-you-container">
-    <h2>Obrigado por participar!</h2>
-    <p>Sua participação é muito importante para nossa pesquisa.</p>
-    <p>Por favor, retorne ao <strong>Google Forms</strong> para responder ao questionário de percepção do experimento.</p>
+    <h2>Obrigado por participar do experimento!</h2>
+
+    <p>
+      Importante: Memorize a frase acima, ela será solicitada no Google Forms
+    </p>
+
+    <div id="group-instruction" class="highlight-box"></div>
+
+    <p class="instruction-note">Agora, por favor, volte ao Google Forms para preencher o restante do formulário. Caso tenha fechado a aba, clique no link abaixo:</p>
+
     <a href="https://forms.gle/25yKP4cvEoUmbSPR9" class="btn">Ir para o Google Forms</a>
   </main>
 
@@ -22,4 +29,24 @@
     <p>Em caso de dúvidas ou problemas, entre em contato com: <strong>(82) 99985-5194</strong> ou <strong>mhvo@ic.ufal.br</strong> - Márcio Henrique, aluno de Ciência da Computação - UFAL</p>
   </footer>
 </body>
+<script type="module">
+  const userId = localStorage.getItem("user_id");
+  const API_BASE = "http://localhost:8000";
+
+  async function showGroupMessage() {
+    if (!userId) return;
+
+    const res = await fetch(`${API_BASE}/users/${userId}`);
+    const user = await res.json();
+
+    const box = document.getElementById("group-instruction");
+    if (user.group === "A") {
+      box.innerHTML = `"O sol era um globo de ouro ardente"`; // Grupo A
+    } else {
+      box.innerHTML = `"A lua brilhava como um espelho de prata"`; // Grupo B
+    }
+  }
+  showGroupMessage();
+
+</script>
 </html>

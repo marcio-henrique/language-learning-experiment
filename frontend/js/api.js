@@ -1,4 +1,4 @@
-const API_BASE = "https://language-learning-experiment.duckdns.org";  // ou o endereço real do seu backend
+import { API_BASE } from "./config.js";
 
 export async function getEducationalText() {
   const response = await fetch(`${API_BASE}/texts/`);

@@ -14,7 +14,7 @@ body {
   }
   
   main {
-    max-width: 800px;
+    max-width: 1500px;
     margin: 40px auto;
     background: white;
     padding: 24px;
@@ -148,8 +148,11 @@ body {
   form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    /* gap: 12px; */
     margin-top: 16px;
+  }
+  #user-form {
+    gap: 12px;
   }
   
   input {
@@ -264,3 +267,42 @@ body {
     background-color: #45a049;
   }
   
+  .radio-option {
+    display: block;
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background 0.3s;
+  }
+  
+  .radio-option.correct {
+    background-color: #c8e6c9;
+  }
+  
+  .radio-option.incorrect {
+    background-color: #ffcdd2;
+  }
+  
+
+  .thank-you-container {
+    max-width: 600px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 24px;
+  }
+  
+  .highlight-box {
+    font-size: 1.2rem;
+    background: #f0f0f0;
+    padding: 16px;
+    margin: 24px 0;
+    border-left: 5px solid #2196f3;
+    font-weight: bold;
+  }
+  
+  .instruction-note {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 24px;
+  }
+

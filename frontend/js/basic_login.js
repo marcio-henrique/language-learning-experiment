@@ -1,4 +1,4 @@
-const API_BASE = "https://language-learning-experiment.duckdns.org";
+import { API_BASE } from "./config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const userId = localStorage.getItem("user_id");

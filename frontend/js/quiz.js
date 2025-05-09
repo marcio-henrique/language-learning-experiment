@@ -1,4 +1,5 @@
-const API_BASE = "https://language-learning-experiment.duckdns.org";
+import { API_BASE } from "./config.js";
+
 const userId = localStorage.getItem("user_id");
 
 if (!userId) {
@@ -46,58 +47,74 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+let quizSubmitted = false;
+
 document.getElementById("submit-quiz").addEventListener("click", async (e) => {
   e.preventDefault();
 
   const form = document.getElementById("quiz-form");
-  const qid = form.dataset.qid;
-  const answers = {};
 
-  let allAnswered = true;
+  if (!quizSubmitted) {
+    let allAnswered = true;
+    const answers = {};
 
-  Object.keys(correctAnswers).forEach(qnum => {
-    const selected = form.querySelector(`input[name="q${qnum}"]:checked`);
-    if (!selected) {
-      allAnswered = false;
+    Object.keys(correctAnswers).forEach(qnum => {
+      const selected = form.querySelector(`input[name="q${qnum}"]:checked`);
+      if (!selected) {
+        allAnswered = false;
+        return;
+      }
+
+      const userAnswer = selected.value;
+      answers[qnum] = userAnswer;
+
+      const radios = form.querySelectorAll(`input[name="q${qnum}"]`);
+      radios.forEach(radio => {
+        const label = radio.parentElement;
+        label.classList.remove("correct", "wrong");
+
+        if (radio.value === correctAnswers[qnum]) {
+          label.classList.add("correct");
+        }
+
+        if (radio.checked && radio.value !== correctAnswers[qnum]) {
+          label.classList.add("wrong");
+        }
+      });
+    });
+
+    if (!allAnswered) {
+      alert("Por favor, responda todas as questões antes de enviar.");
       return;
     }
 
-    const userAnswer = selected.value;
-    answers[qnum] = userAnswer;
+    alert("Confira as respostas destacadas. Quando estiver pronto, clique em 'Finalizar' para prosseguir.");
+    document.getElementById("submit-quiz").innerText = "Finalizar";
+    quizSubmitted = true;
 
-    const labels = form.querySelectorAll(`input[name="q${qnum}"]`);
-    labels.forEach(radio => {
-      const label = radio.parentElement;
-      label.classList.remove("correct", "wrong");
+  } else {
+    const qid = form.dataset.qid;
+    const answers = {};
 
-      if (radio.value === correctAnswers[qnum]) {
-        label.classList.add("correct");
-      }
-
-      if (radio.checked && radio.value !== correctAnswers[qnum]) {
-        label.classList.add("wrong");
+    Object.keys(correctAnswers).forEach(qnum => {
+      const selected = form.querySelector(`input[name="q${qnum}"]:checked`);
+      if (selected) {
+        answers[qnum] = selected.value;
       }
     });
-  });
 
-  if (!allAnswered) {
-    alert("Por favor, responda todas as questões antes de enviar.");
-    return;
-  }
+    await fetch(`${API_BASE}/questionnaires/answer/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: userId,
+        questionnaire_id: qid,
+        answers: answers
+      })
+    });
 
-  await fetch(`${API_BASE}/questionnaires/answer/`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      user_id: userId,
-      questionnaire_id: qid,
-      answers: answers
-    })
-  });
-
-  setTimeout(() => {
     window.location.href = "thanks.html";
-  }, 3000); // mostra as respostas por 3 segundos
+  }
 });
 
 document.getElementById("logout-btn")?.addEventListener("click", () => {
