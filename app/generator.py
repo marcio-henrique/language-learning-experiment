@@ -31,18 +31,24 @@ def process_text(text: str) -> List[Dict[str, str]]:
 
     # 4. Extrair verbos únicos
     verbos = set()
+    substantivos = set()
     for token in doc_alemao:
         if token.pos_ == "VERB":
             verbo_lematizado = token.lemma_.lower()
             verbos.add(verbo_lematizado)
+        elif token.pos_ == "NOUN":
+            substantivo_lematizado = token.lemma_.lower()
+            substantivos.add(substantivo_lematizado)
 
     if not verbos:
         return []
     
     verbosStr = ', '.join(verbos)
 
+    substantivosStr = ', '.join(substantivos)
+
     # 5. Gerar flashcards básicos
-    flashcards = []
+    # flashcards = []
     # for verbo in sorted(verbos):
         # card = {
         #     "titulo": f"Verbo: {verbo}",
@@ -50,7 +56,7 @@ def process_text(text: str) -> List[Dict[str, str]]:
         #     "exemplo": f"Exemplo: Ich {verbo} jeden Tag.",  # exemplo básico; a LLM depois pode melhorar
         #     "pergunta": f"O que significa o verbo '{verbo}' em alemão?"
         # }
-    card = generate_flashcard(verbosStr)
-    flashcards.append(card)
+    # card = generate_flashcard(verbosStr)
+    # flashcards.append(card)
 
-    return flashcards
+    return substantivosStr
