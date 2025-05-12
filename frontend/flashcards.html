@@ -13,7 +13,7 @@
     <button id="logout-btn">Sair</button>
   </header>
 
-  <main style="min-width: 700px;">
+  <main>
     <h2>Para fixação, interaja e estude com os flashcards abaixo:</h2>
     <p>Cada flashcard conta com uma questão de fixação no verso. Para visualizar e respondê-la, clique em <b>"Ver verso"</b> no flashcard desejado.</p>
     <div class="flashcards-grid" id="flashcards-container">
@@ -30,4 +30,11 @@
   <script type="module" src="js/logger.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
+<style>
+  @media (min-width: 767px) {
+    main {
+      min-width: 710px;
+    }
+  }
+</style>
 </html>
