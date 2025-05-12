@@ -4,7 +4,7 @@ const colors = ["yellow", "blue", "green", "purple"];
 import { API_BASE } from "./config.js";
 
 async function loadFlashcards() {
-  const res = await fetch(`${API_BASE}/flashcards/custom/?auto_flashcards=3&manual_flashcards=1`);
+  const res = await fetch(`${API_BASE}/flashcards/custom/?auto_flashcards=4&auto_flashcards_rand=1`);
   const data = await res.json();
 
   data.flashcards.forEach((card, i) => {
